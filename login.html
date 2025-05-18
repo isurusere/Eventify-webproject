@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      backdrop-filter: blur(5px);
+    }
+
+    .auth-container {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: #e8d5d5;
+      cursor: pointer;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .close-btn:hover {
+      color: #ff4444;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      color: #034693;
+    }
+
+    .input-group {
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+      color: #110909;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      background: rgba(230, 227, 227, 0.8);
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      background: #007bff;
+      color: white;
+      padding: 0.8rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    p {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+
+    p a {
+      color: #00ffff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    p a:hover {
+      text-decoration: underline;
+    }
+
+    .error-message {
+      color: #ff4d4d;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-container">
+    <span class="close-btn" onclick="redirectToHome()">❌</span>
+    <form id="loginForm">
+      <h1>Login</h1>
+      <div id="error-message" class="error-message" style="display: none;"></div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required />
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required />
+       
+      </div>
+      <button type="button" class="btn" onclick="loginUser()">Login</button>
+      <p>Don't have an account? <a href="register.html">Register Here</a></p>
+    </form>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const passwordInput = document.getElementById('password');
+      const toggleIcon = document.querySelector('.toggle-password');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+       
+      } else {
+        passwordInput.type = 'password';
+        
+      }
+    }
+
+    async function loginUser() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorMessage = document.getElementById('error-message');
+
+      try {
+        const response = await fetch('http://localhost:5000/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          localStorage.setItem('username', data.username);
+          window.location.href = 'index.html';
+        } else {
+          errorMessage.style.display = 'block';
+          errorMessage.textContent = data.message || 'Login failed.';
+        }
+      } catch (error) {
+        errorMessage.style.display = 'block';
+        errorMessage.textContent = 'Something went wrong. Please try again.';
+        console.error(error);
+      }
+    }
+
+    function redirectToHome() {
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

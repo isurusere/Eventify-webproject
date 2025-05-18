@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Planning Blog</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Page Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f6f8fa, #e9ecf3);
+        }
+       /* Blog Section Styling */
+        .blog-header {
+            text-align: center;
+            background-color: #1e3a8a;
+            color: white;
+            padding: 5rem 5rem;
+    
+        }
+
+        .blog-header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .blog-header p {
+            font-size: 1.2rem;
+            margin: 1rem 0 0;
+        }
+
+        .blog-container {
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-post {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-10px);
+        }
+
+        .blog-post img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-post-content {
+            padding: 1.5rem;
+        }
+
+        .blog-post-title {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin: 0 0 0.5rem;
+        }
+
+        .blog-post-description {
+            font-size: 1rem;
+            color: #555;
+            margin: 0;
+        }
+        #user-info {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: #fff;
+    font-size: 0.95rem;
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+}
+
+  #user-info:hover {
+      background: rgba(255, 255, 255, 0.25);
+  }
+
+  #user-info i {
+      color: #fff;
+      font-size: 1rem;
+  }
+
+  #username-display {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+  }
+  #logout-btn a {
+    background-color: #ff5c8d;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 92, 141, 0.3);
+}
+
+#logout-btn a:hover {
+    background-color: #ff3366;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(255, 51, 102, 0.4);
+}
+
+             /* Customer Feedback Section */
+             .feedback-section {
+            background: #1e3a8a;
+            color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        .feedback-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feedback-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feedback-form input,
+        .feedback-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .feedback-form textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        .feedback-form button {
+            background: #4a90e2;
+            color: white;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .feedback-form button:hover {
+            background: #357abd;
+        }
+        /* Animation on scroll */
+.blog-post {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.blog-post:nth-child(1) { animation-delay: 0.2s; }
+.blog-post:nth-child(2) { animation-delay: 0.4s; }
+.blog-post:nth-child(3) { animation-delay: 0.6s; }
+.blog-post:nth-child(4) { animation-delay: 0.8s; }
+.blog-post:nth-child(5) { animation-delay: 1s; }
+.blog-post:nth-child(6) { animation-delay: 1.2s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-container">
+    <div class="logo">
+      <a href="index.html">
+        <span class="logo-part1">EVENTIFY</span>
+      </a>
+    </div>
+    <div class="menu-icon" id="menu-icon">&#9776;</div>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li id="user-info" style="display: none;"> <span id="username-display"></span></li>
+      <li id="login-register"><a href="login.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login/Register</a></li>
+      <li id="logout-btn" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+  
+  <!-- Blog Header -->
+  <section class="blog-header">
+    <h1>Welcome to Our Blog</h1>
+    <p>Stay inspired with the latest tips and trends in event planning.</p>
+  </section>
+  
+  <!-- Blog Posts -->
+  <section class="blog-container">
+    <div class="blog-post">
+      <img src="images/blog 1.jpg" alt="Luxury Wedding">
+      <div class="blog-post-content">
+        <h2 class="blog-post-title">Glamorous Wedding in Tuscany</h2>
+        <p class="blog-post-description">An unforgettable destination wedding featuring floral artistry, sunset vows, and a luxurious villa celebration.</p>
+      </div>
+    </div>
+    
+    <div class="blog-post">
+      <img src="images/blog 2.webp" alt="Corporate Gala">
+      <div class="blog-post-content">
+        <h2 class="blog-post-title">Annual Corporate Gala 2024</h2>
+        <p class="blog-post-description">Elegant theme with custom lighting, stage production, and gourmet dining that left a lasting impression.</p>
+      </div>
+    </div>
+    
+    <div class="blog-post">
+      <img src="images/blog 3.jpg" alt="Kids Birthday Party">
+      <div class="blog-post-content">
+        <h2 class="blog-post-title">Jungle-Themed Birthday Bash</h2>
+        <p class="blog-post-description">Interactive fun with animal mascots, inflatable adventures, and colorful décor for a kid's dream party.</p>
+      </div>
+    </div>
+    
+    <div class="blog-post">
+      <img src="images/blog 4.jpg" alt="Beach Event">
+      <div class="blog-post-content">
+        <h2 class="blog-post-title">Sunset Beach Engagement</h2>
+        <p class="blog-post-description">Romantic coastal engagement featuring bonfire dinner setup and a firework surprise proposal.</p>
+      </div>
+    </div>   
+  </section>
+  
+  <!-- Feedback Section -->
+  <section class="feedback-section">
+    <h2>We Value Your Feedback!</h2>
+    <form action="/submit-feedback" method="POST" class="feedback-form" onsubmit="return validateFeedbackForm()">
+
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" id="email" required>
+      <textarea name="feedback" placeholder="Share your feedback or suggestions..." required></textarea>
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-about">
+        <h3>About Us</h3>
+        <p>We craft unforgettable events tailored to your vision. Let’s make your special day extraordinary with our expert planning services.</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-envelope"></i> info@eventplanner.com</p>
+        <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Event St, City, Country</p>
+      </div>
+
+      <div class="footer-newsletter">
+        <h3>Subscribe to Our Newsletter</h3>
+        <p>Get the latest event trends, tips, and exclusive offers.</p>
+        <form>
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-social">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <ul class="bottom-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+      <p>&copy; <span id="year"></span> Event Planner. All rights reserved.</p>
+    </div>
+  </footer>
+  <!-- Script Section -->
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  
+    // Show username and toggle buttons
+    const username = localStorage.getItem("username");
+    if (username) {
+      document.getElementById("username-display").textContent = username;
+      document.getElementById("user-info").style.display = "inline-block";
+      document.getElementById("login-register").style.display = "none";
+      document.getElementById("logout-btn").style.display = "inline-block";
+    }
+  
+    function logout() {
+      localStorage.removeItem("username");
+      location.reload();
+    }
+  
+    function validateFeedbackForm() {
+      const email = document.getElementById("email").value;
+      const emailRegex = /^\S+@\S+\.\S+$/;
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+      return true;
+    }
+    const menuIcon = document.getElementById('menu-icon');
+  const navMenu = document.getElementById('nav-menu');
+
+  menuIcon.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.blog-post').forEach(post => {
+    post.style.animationPlayState = 'paused';
+    observer.observe(post);
+  });   
+  </script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wedding Planning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+    header {
+      background: url('images/wedding.jpg') no-repeat center center/cover;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    }
+
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5rem;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .project {
+      background: #fff3e0;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .packages {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding-top: 20px;
+    }
+
+    .package {
+      background: linear-gradient(135deg, #f8bbd0, #f3e5f5);
+      border-radius: 20px;
+      padding: 25px;
+      width: 280px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .package::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: -30%;
+      width: 160%;
+      height: 160%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
+      transform: rotate(25deg);
+      pointer-events: none;
+    }
+
+    .package:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+
+    .package h3 {
+      font-size: 1.6rem;
+      color: #880e4f;
+      margin-bottom: 10px;
+      font-family: 'Great Vibes', cursive;
+    }
+
+    .package p {
+      font-size: 1rem;
+      color: #4a148c;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .see-more {
+      background-color: #ab47bc;
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(171, 71, 188, 0.4);
+    }
+
+    .see-more:hover {
+      background-color: #8e24aa;
+      transform: scale(1.05);
+    }
+
+    .book {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 30px;
+      background-color: #e91e63;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .book:hover {
+      background-color: #d81b60;
+      transform: scale(1.05);
+    }
+
+    .book:active {
+      background-color: #c2185b;
+      transform: scale(0.98);
+    }
+
+    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 700px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-content h2 {
+      margin-bottom: 10px;
+    }
+
+    .modal-content img {
+      width: 30%;
+      margin: 10px;
+      border-radius: 8px;
+    }
+
+    .modal-content p {
+      margin: 8px 0;
+      font-size: 1.05rem;
+      color: #4a148c;
+      font-weight: 500;
+      position: relative;
+      padding-left: 25px;
+      line-height: 1.6;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .close-btn:hover {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Wedding Planning</h1>
+</header>
+
+<section>
+  <h2>✨ Our Past Weddings</h2>
+
+  <div class="projects">
+    <div class="project">
+      <h3>🌸 Garden Wedding – Colombo</h3>
+      <p>Charming outdoor wedding with floral decorations, live music, and buffet.</p>
+      <button class="see-more" onclick="openModal(
+        'Garden Wedding – Colombo',
+        ['images/colombo 3.jpeg', 'images/colombo 2.jpeg', 'images/colombo 1.jpeg'],
+        null,
+        null,
+        'A charming outdoor wedding unfolds beneath a canopy of twinkling fairy lights, with floral arrangements adorning every corner. The soft melodies of live music set a romantic tone as guests gather around elegantly decorated tables. A lavish buffet offers a delightful spread, featuring fresh seafood, gourmet dishes, and decadent desserts. The gentle evening breeze carries laughter and conversation, while the dance floor invites guests to celebrate under the stars. Every detail, from personalized wedding favors to a breathtaking sunset backdrop, creates an unforgettable experience filled with love and joy.'
+      )">See More</button>
+    </div>
+    <div class="project">
+      <h3>🏖️ Beach Wedding – Galle</h3>
+      <p>Sunset beach ceremony with dinner and traditional Kandyan dancers.</p>
+      <button class="see-more" onclick="openModal(
+        'Beach Wedding – Galle',
+        ['images/gall 1.jpeg', 'images/gall 2.jpeg', 'images/gall 3.jpeg'],
+        null,
+        null,
+        'A breathtaking sunset wedding on Galle’s golden shores, where the rhythmic beats of traditional Kandyan dancers set the tone for an unforgettable evening. Guests are welcomed with tropical cocktails as the sun dips below the horizon, casting a warm glow over the elegantly decorated beachside venue. The fresh seafood buffet offers a delectable spread, featuring grilled lobster, prawn curry, and exotic island flavors. Twinkling fairy lights and floral arrangements enhance the dreamy ambiance, while soft ocean breezes carry the melodies of live music. The night concludes with a mesmerizing fire dance, sealing the celebration with magic and romance..'
+      )">See More</button>
+    </div>
+  </div>
+
+  <h2 style="margin-top: 50px;">🎁 Wedding Packages</h2>
+
+  <div class="packages">
+    <div class="package">
+      <h3>Standard</h3>
+      <p>Perfect for elegant, budget-friendly celebrations.</p>
+      <button class="see-more" onclick="openModal(
+        'Standard Package',
+        ['images/Venue Decoration 1.jpg', 'images/Music 1.jpg', 'images/Photography 01.jpeg'],
+        '$5,000',
+        '+94 71 123 4567',
+        `<p>Destination wedding planning<br></p>
+        <p>Full-day coordination<br></p>
+        <p>Professional DJ or live band<br></p>
+        <p>Photography + Videography (full-day)<br></p>
+        <p>Full floral design<br></p>
+        <p>Premium lighting and sound<br></p>
+        <p>Wedding cake Design<br></p>
+        <p>Pre-wedding events planning<p>`
+      )">See More</button>
+    </div>
+
+    <div class="package">
+      <h3>Premium</h3>
+      <p>Luxury wedding with extras & exclusive experiences.</p>
+      <button class="see-more" onclick="openModal(
+        'Premium Package',
+        ['images/Venue Decoration 2.jpg', 'images/corporate.jpg', 'images/card.avif'],
+        '$20,000',
+        '+94 77 987 6543',
+        `<p>Luxury venue<br></p>
+        <p>Destination wedding planning<br></p>
+        <p>Full-day coordination<br></p>
+        <p>Professional DJ or live band<br></p>
+        <p>Photography + Videography (full-day)<br></p>
+        <p>Full floral design<br></p>
+        <p>Premium lighting and sound<br></p>
+        <p>Wedding cake Design<br></p>
+        <p>Pre-wedding events planning<br><br></p>
+        <p>🎁 Free Gifts:<br></p>
+        <p>- Premium Album<br></p>
+        <p>- Custom Wedding Cards</p>`
+      )">See More</button>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">❌</span>
+    <h2 id="modal-title"></h2>
+    <div id="modal-images"></div>
+    <p id="modal-price"></p>
+    <p id="modal-contact"></p>
+    <a href="book.html" class="book" id="bookBtn">Book Now</a>
+  </div>
+</div>
+
+<script>
+  function openModal(title, images, price, contact, details) {
+    document.getElementById('modal-title').textContent = title;
+
+    const imageContainer = document.getElementById('modal-images');
+    imageContainer.innerHTML = '';
+    images.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      imageContainer.appendChild(img);
+    });
+
+    document.getElementById('modal-price').textContent = price ? `💸 ${price}` : '';
+    document.getElementById('modal-contact').textContent = contact ? `📞 ${contact}` : '';
+    document.getElementById('bookBtn').style.display = price && contact ? 'inline-block' : 'none';
+
+    const modal = document.getElementById('modal');
+    const existingDetails = modal.querySelector('#modal-details');
+    if (existingDetails) existingDetails.remove();
+
+    const detailsEl = document.createElement('div');
+    detailsEl.id = 'modal-details';
+    detailsEl.innerHTML = `<p style="text-align:left;margin-top:15px;">${details}</p>`;
+    document.querySelector('.modal-content').appendChild(detailsEl);
+
+    modal.style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>

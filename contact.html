@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+
+<style>
+    /* General Styling */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+    }
+
+    .contact-us {
+        padding: 50px 20px;
+        text-align: center;
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .contact-us h1 {
+        font-size: 3rem;
+        margin-top: 20px;
+    }
+
+    .contact-us p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+
+    .contact-section {
+        background-color: #ffffff;
+        color: #333;
+        margin: 20px auto;
+        padding: 30px;
+        max-width: 600px;
+        border-radius: 10px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+        text-align: center;
+    }
+
+    .contact-section:hover {
+        transform: scale(1.05);
+    }
+
+    .contact-icon {
+        font-size: 3rem;
+        color: #007bff;
+        margin-bottom: 15px;
+    }
+
+    .contact-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .contact-section p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .contact-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .contact-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .email-form input, .email-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .email-form button {
+        width: 100%;
+    }
+
+    .footer-note {
+        margin-top: 30px;
+    }
+
+    .footer-note p {
+        font-size: 1rem;
+        color: #fff;
+    }
+
+    .back-to-home {
+        margin-top: 30px;
+        margin-left: 70rem;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.1rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .back-to-home:hover {
+        background-color: #218838;
+    }
+
+    @media (max-width: 768px) {
+        .contact-section {
+            padding: 20px;
+        }
+
+        .contact-section h2 {
+            font-size: 1.5rem;
+        }
+
+        .contact-section p {
+            font-size: 0.9rem;
+        }
+
+        .contact-btn {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+    }
+
+</style>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+    <div class="navbar-container">
+        <div class="logo">
+            <a href="index.php">
+                <span class="logo-part1">EVENTIFY</span>
+                
+            </a>
+        </div>
+
+        <div class="menu-icon" id="menu-icon">&#9776;</div>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+    <section class="contact-us">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We’re here to help! Reach out to us through any of the channels below:</p>
+
+            <!-- Email Section -->
+            <div class="contact-section">
+                <i class="fa fa-envelope contact-icon"></i>
+                <h2>Email Us</h2>
+                <p>Send us a message using the form below, and we'll get back to you shortly.</p>
+                <form action="/send-email" method="POST" class="email-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="contact-btn">Send Email</button>
+                </form>
+            </div>
+
+            <!-- WhatsApp Section -->
+            <div class="contact-section">
+                <i class="fa fa-whatsapp contact-icon"></i>
+                <h2>WhatsApp</h2>
+                <p>Get instant support by chatting with us on WhatsApp.</p>
+                <a href="https://wa.me/1234567890" class="contact-btn" target="_blank">Message Us</a>
+            </div>
+
+            <!-- Facebook Section -->
+            <div class="contact-section">
+                <i class="fa fa-facebook contact-icon"></i>
+                <h2>Facebook</h2>
+                <p>Follow us on Facebook for updates and direct inquiries.</p>
+                <a href="" class="contact-btn" target="_blank">Visit Page</a>
+            </div>
+
+            <!-- Instagram Section -->
+            <div class="contact-section">
+                <i class="fa fa-instagram contact-icon"></i>
+                <h2>Instagram</h2>
+                <p>Connect with us on Instagram for inspiration and inquiries.</p>
+                <a href="" class="contact-btn" target="_blank">Follow Us</a>
+            </div>
+        </div>
+                    <div class="footer-note">
+                <p>We look forward to hearing from you!</p>
+            </div>
+
+    </section>
+    <script>  const menuIcon = document.getElementById('menu-icon');
+        const navMenu = document.getElementById('nav-menu');
+      
+        menuIcon.addEventListener('click', () => {
+          navMenu.classList.toggle('active');
+        });</script>
+</body>
+</html>

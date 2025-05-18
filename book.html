@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Event</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: gradient-shift 6s ease infinite alternate;
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background: linear-gradient(135deg, #1e3c72, #2a5298);
+            }
+            100% {
+                background: linear-gradient(135deg, #2a5298, #6dd5ed);
+            }
+        }
+
+        /* Form Container */
+        .form-container {
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            width: 90%;
+            max-width: 700px;
+            box-sizing: border-box;
+        }
+
+        /* Header */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #2a5298;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: #6dd5ed;
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        /* Form Group */
+        .form-group {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .form-group i {
+            color: #6dd5ed;
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            flex: 1;
+            padding: 0.9rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            transition: border 0.3s, box-shadow 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #6dd5ed;
+            box-shadow: 0 0 8px rgba(109, 213, 237, 0.5);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background: linear-gradient(90deg, #6dd5ed, #2193b0);
+            border: none;
+            border-radius: 50px;
+            padding: 1rem;
+            width: 100%;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 8px 15px rgba(109, 213, 237, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(90deg, #2193b0, #6dd5ed);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(33, 147, 176, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .form-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Plan Your Event</h1>
+        <form id="eventForm" action="submit_event.php" method="POST">
+            <!-- Full Name -->
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="customerName" name="customerName" placeholder="Enter your full name" required>
+            </div>
+            <!-- Email -->
+            <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <!-- Phone -->
+            <div class="form-group">
+                <i class="fas fa-phone"></i>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            </div>
+            <!-- Event Type -->
+            <div class="form-group">
+                <i class="fas fa-calendar-alt"></i>
+                <select id="eventType" name="eventType" required>
+                    <option value="" disabled selected>Select an event type</option>
+                    <option value="Wedding">Wedding</option>
+                    <option value="Corporate Event">Corporate Event</option>
+                    <option value="Birthday Party">Birthday Party</option>
+                    <option value="Private Event">Private Event</option>
+                </select>
+            </div>
+            <!-- Event Date -->
+            <div class="form-group">
+                <i class="fas fa-calendar"></i>
+                <input type="date" id="eventDate" name="eventDate" required>
+            </div>
+            <!-- Guest Count -->
+            <div class="form-group">
+                <i class="fas fa-users"></i>
+                <input type="number" id="guestCount" name="guestCount" placeholder="Expected guest count" min="1" required>
+            </div>
+            <!-- Location -->
+            <div class="form-group">
+                <i class="fas fa-map-marker-alt"></i>
+                <input type="text" id="location" name="location" placeholder="Enter the location of the event" required>
+            </div>
+            <!-- Additional Details -->
+            <div class="form-group">
+                <i class="fas fa-comment-alt"></i>
+                <textarea id="additionalDetails" name="additionalDetails" placeholder="Share specific details..." rows="4"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <form id="eventForm" action="Payment.html" method="POST">
+                <!-- Your form fields here... -->
+                <button type="submit" class="submit-btn">Submit Details</button>
+            </form>
+
+            
+        </form>
+    </div>
+</body>
+
+<script>
+    document.getElementById("eventForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const formData = {
+            customerName: document.getElementById("customerName").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            eventType: document.getElementById("eventType").value,
+            eventDate: document.getElementById("eventDate").value,
+            guestCount: document.getElementById("guestCount").value,
+            location: document.getElementById("location").value,
+            additionalDetails: document.getElementById("additionalDetails").value
+        };
+
+        try {
+            const response = await fetch("http://localhost:5000/api/book-event", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                alert(result.message);
+                // Redirect to payment page
+                window.location.href = "Payment.html";
+            } else {
+                alert("Error: " + result.message);
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+            alert("Something went wrong while booking.");
+        }
+    });
+</script>
+
+    
+
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Secure Payment</title>
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script> <!-- Replace with your PayPal Client ID -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #a18cd1, #fbc2eb);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .payment-container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+      width: 400px;
+      animation: slideUp 1s ease-in-out;
+    }
+
+    .payment-container h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #6a11cb;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #444;
+    }
+
+    .form-group input, select {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+      border-color: #6a11cb;
+      outline: none;
+      box-shadow: 0 0 8px rgba(106, 17, 203, 0.2);
+    }
+
+    .payment-methods {
+      display: flex;
+      justify-content: space-between;
+      margin: 1rem 0;
+    }
+
+    .payment-methods i {
+      font-size: 2rem;
+      color: #6a11cb;
+      transition: transform 0.3s ease;
+    }
+
+    .payment-methods i:hover {
+      transform: scale(1.2);
+      color: #a045ec;
+    }
+
+    .pay-btn {
+      width: 100%;
+      background: #6a11cb;
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s ease-in-out;
+    }
+
+    .pay-btn:hover {
+      background: #2575fc;
+      transform: translateY(-2px);
+    }
+
+    #paypal-button-container {
+      margin-top: 20px;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="payment-container">
+  <h2>Complete Your Payment</h2>
+
+  <form id="paymentForm">
+    <div class="form-group">
+      <label for="name">Cardholder Name</label>
+      <input type="text" id="name" placeholder="John Doe" required>
+    </div>
+
+    <div class="form-group">
+      <label for="card-number">Card Number</label>
+      <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX" required>
+    </div>
+
+    <div class="form-group">
+      <label for="expiry">Expiry Date</label>
+      <input type="text" id="expiry" placeholder="MM/YY" required>
+    </div>
+
+    <div class="form-group">
+      <label for="cvv">CVV</label>
+      <input type="password" id="cvv" placeholder="***" required>
+    </div>
+
+    <div class="payment-methods">
+      <i class="fab fa-cc-visa"></i>
+      <i class="fab fa-cc-mastercard"></i>
+      <i class="fab fa-cc-paypal"></i>
+      <i class="fab fa-google-pay"></i>
+      <i class="fab fa-apple-pay"></i>
+    </div>
+
+    <button type="submit" class="pay-btn">Pay Now</button>
+  </form>
+
+  <!-- PayPal Button -->
+  <div id="paypal-button-container"></div>
+
+  <div class="note">Your payment is 100% secure and encrypted.</div>
+</div>
+
+<script>
+  document.getElementById("paymentForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = prompt("Enter your email to receive receipt:");
+    const amount = "49.99";
+
+    alert("💳 Payment Successful!");
+
+    fetch("http://localhost:5000/send-receipt", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, amount })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.message) {
+        alert("✅ Receipt sent to your email!");
+      } else {
+        alert("❌ Failed to send receipt: " + data.error);
+      }
+
+      // Redirect to home page
+      window.location.href = "index.html";
+    })
+    .catch(err => {
+      console.error("Error:", err);
+      alert("Error sending receipt.");
+
+      // Redirect anyway
+      window.location.href = "index.html";
+    });
+  });
+</script>
+
+</body>
+</html>

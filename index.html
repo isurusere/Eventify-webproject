@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Event Planning Homepage</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<style>
+  
+  .about-us {
+    background: linear-gradient(to right, #1273b0c0, #153cb1);
+    padding: 60px 20px;
+    text-align: center;
+    color: #fff;
+    border-radius: 10px;
+  }
+
+  .about-us h2 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .about-us p {
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+
+  .team {
+    margin-top: 40px;
+  }
+
+  .team h3 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  .team-members {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .team-member {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: 250px;
+  }
+
+  .team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .team-member img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+  }
+
+  .team-member h4 {
+    font-size: 1.5em;
+    margin: 10px 0 5px;
+  }
+
+  .team-member p {
+    font-size: 1.1em;
+    opacity: 0.8;
+  }
+
+  .btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: #fff;
+    color: #ff758c;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .btn:hover {
+    background: #ff758c;
+    color: white;
+    transform: scale(1.1);
+  }
+  /* Stylish User Info Badge in Navbar */
+#user-info {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: #fff;
+    font-size: 0.95rem;
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+}
+
+#user-info:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+#user-info i {
+    color: #fff;
+    font-size: 1rem;
+}
+
+#username-display {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Stylish Logout Button */
+#logout-btn a {
+    background-color: #ff5c8d;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 92, 141, 0.3);
+}
+
+#logout-btn a:hover {
+    background-color: #ff3366;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(255, 51, 102, 0.4);
+}
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+    #user-info, #logout-btn a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.Payment {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: linear-gradient(135deg, #ff5c8d, #ff0066);
+  color: white;
+  padding: 12px 20px;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  z-index: 1000;
+
+  /* Animation */
+  animation: slideInRight 0.8s ease-out;
+
+  /* Shadow and backdrop */
+  box-shadow: 0 6px 16px rgba(255, 0, 102, 0.4);
+  backdrop-filter: blur(5px);
+
+  /* Smooth hover */
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.Payment i {
+  font-size: 1.2rem;
+}
+
+.Payment:hover {
+  background: linear-gradient(135deg, #e6005c, #cc0052);
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 8px 20px rgba(204, 0, 82, 0.5);
+}
+
+/* Keyframe for slide in */
+@keyframes slideInRight {
+  0% {
+    transform: translateX(150%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 400px) {
+  .about-us h2 {
+    font-size: 1.8em;
+  }
+
+  .about-us p {
+    font-size: 1em;
+    padding: 0 10px;
+  }
+
+  .team h3 {
+    font-size: 1.5em;
+  }
+
+  .team-members {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team-member {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    font-size: 1em;
+    padding: 10px 20px;
+  }
+
+  #user-info, #logout-btn a {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .Payment {
+    top: 70px;
+    right: 10px;
+    font-size: 0.85rem;
+    padding: 10px 16px;
+    gap: 6px;
+  }
+
+  .Payment i {
+    font-size: 1rem;
+  }
+
+  .hero h1 {
+    font-size: 1.8em;
+  }
+
+  .hero p {
+    font-size: 1em;
+    padding: 0 10px;
+  }
+
+  .button-container .login-btn {
+    font-size: 1em;
+    padding: 10px 20px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-about,
+  .footer-links,
+  .footer-contact,
+  .footer-newsletter {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .footer-social .social-icons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    font-size: 0.9em;
+    padding: 10px;
+  }
+}
+
+
+
+</style>
+
+<body>
+  <div class="video-background">
+    <video autoplay muted loop id="bg-video">
+      <source src="Image&video/BG01.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar-container">
+      <div class="logo">
+        <a href="index.html">
+          <span class="logo-part1">EVENTIFY</span>
+        </a>
+      </div>
+      <div class="menu-icon" id="menu-icon">&#9776;</div>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li id="user-info" style="display: none;"> <span id="username-display"></span></li>
+        <li id="login-register"><a href="login.html" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login/Register</a></li>
+        <li id="logout-btn" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+  
+
+    <h1>Plan Your Perfect Event</h1>
+    <p>Your journey to a flawless event starts here.</p>
+    <div class="button-container">
+      <a href="services.html" class="login-btn">Explore Services</a>
+    </div>
+  </header>
+
+  <section class="about-us">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>
+        At Event Planner, we are dedicated to making your event planning seamless and unforgettable. 
+        Whether it’s a wedding, corporate event, or a small gathering, we provide personalized services 
+        tailored to your needs.
+      </p>
+      <div class="team">
+        <h3>Meet Our Team</h3>
+        <div class="team-members">
+          <div class="team-member">
+            <img src="Image&video/ceo.jpg" alt="Team Member 1" />
+            <h4>Jane Doe</h4>
+            <p>Event Manager</p>
+          </div>
+          <div class="team-member">
+            <img src="Image&video/ceo 3.webp" alt="Team Member 2" />
+            <h4>John Smith</h4>
+            <p>Creative Director</p>
+          </div>
+          <div class="team-member">
+            <img src="Image&video/ceo2.jpg" alt="Team Member 3" />
+            <h4>Emily Brown</h4>
+            <p>Logistics Specialist</p>
+          </div>
+        </div>
+      </div>
+      <a href="about.jsp" class="btn">Learn More</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-about">
+        <h3>About Us</h3>
+        <p>We craft unforgettable events tailored to your vision. Let’s make your special day extraordinary with our expert planning services.</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-envelope"></i> info@eventplanner.com</p>
+        <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Event St, City, Country</p>
+      </div>
+
+      <div class="footer-newsletter">
+        <h3>Subscribe to Our Newsletter</h3>
+        <p>Get the latest event trends, tips, and exclusive offers.</p>
+        <form>
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-social">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <ul class="bottom-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+      <p>&copy; <span id="year"></span> Event Planner. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript for session logic -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const username = localStorage.getItem("username");
+    if (username) {
+      document.getElementById("username-display").textContent = username;
+      document.getElementById("user-info").style.display = "inline-block";
+      document.getElementById("login-register").style.display = "none";
+      document.getElementById("logout-btn").style.display = "inline-block";
+    }
+
+    function logout() {
+      localStorage.removeItem("username");
+      location.reload();
+    }
+
+    const menuIcon = document.getElementById('menu-icon');
+  const navMenu = document.getElementById('nav-menu');
+
+  menuIcon.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+  
+  </script>
+</body>
+</html>

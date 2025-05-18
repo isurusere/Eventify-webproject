@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Services</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* [Style section — same as before — no changes] */
+    .services {
+      text-align: center;
+      background-color: #dbc5f0;
+      color: white;
+      padding: 5rem 5rem;
+    }
+
+    .services h1 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 2rem;
+    }
+
+    .services p {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 3.5rem;
+    }
+
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      justify-items: center;
+    }
+
+    .service-item {
+      background-color: #ffffff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+      max-width: 300px;
+    }
+
+    .service-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .service-item h3 {
+      font-size: 1.6rem;
+      color: #007bff;
+      margin: 1rem 0;
+    }
+
+    .service-item p {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .service-item .order-btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background-color: #007bff;
+      color: #ffffff;
+      font-weight: bold;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+
+    .service-item .order-btn:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    .service-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .service-item:hover img {
+      transform: scale(1.1);
+    }
+
+    #user-info {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      color: #fff;
+      font-size: 0.95rem;
+      transition: background 0.3s ease;
+      box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+    }
+
+    #user-info:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    #user-info i {
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    #username-display {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    #logout-btn a {
+      background-color: #ff5c8d;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 92, 141, 0.3);
+    }
+
+    #logout-btn a:hover {
+      background-color: #ff3366;
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(255, 51, 102, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      #user-info, #logout-btn a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="navbar-container">
+      <div class="logo">
+        <a href="index.html">
+          <span class="logo-part1">EVENTIFY</span>
+        </a>
+      </div>
+      <div class="menu-icon" id="menu-icon">&#9776;</div>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li id="user-info" style="display: none;"><span id="username-display"></span></li>
+        <li id="login-register"><a href="login.html" class="login-btn"> Login/Register</a></li>
+        <li id="logout-btn" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="services">
+    <h1>Our Event Planning Services</h1>
+    <p>Explore our wide range of services designed to make your event unforgettable.</p>
+
+    <div class="service-list">
+      <div class="service-item">
+        <img src="Image&video/wedding.jpg" alt="Wedding Planning">
+        <h3>Wedding Planning</h3>
+        <p>We offer full wedding planning services to make your day special.</p>
+        <a class="order-btn" onclick="goToPage('wedding.html')">SELECT</a>
+      </div>
+      <div class="service-item">
+        <img src="Image&video/corporate.jpg" alt="Corporate Events">
+        <h3>Corporate Events</h3>
+        <p>Professional planning for conferences, meetings, and more.</p>
+        <a class="order-btn" onclick="goToPage('corporate.html')">SELECT</a>
+      </div>
+      <div class="service-item">
+        <img src="Image&video/birthday.jpg" alt="Birthday Parties">
+        <h3>Birthday Parties</h3>
+        <p>Make your birthday celebrations fun and memorable with our help.</p>
+        <a class="order-btn" onclick="goToPage('birthday.html')">SELECT</a>
+      </div>
+      <div class="service-item">
+        <img src="Image&video/private.jpg" alt="Private Events">
+        <h3>Private Events</h3>
+        <p>Exclusive services for private gatherings and events.</p>
+        <a class="order-btn" onclick="goToPage('private.html')">SELECT</a>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-about">
+        <h3>About Us</h3>
+        <p>We craft unforgettable events tailored to your vision. Let’s make your special day extraordinary with our expert planning services.</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-envelope"></i> info@eventplanner.com</p>
+        <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Event St, City, Country</p>
+      </div>
+
+      <div class="footer-newsletter">
+        <h3>Subscribe to Our Newsletter</h3>
+        <p>Get the latest event trends, tips, and exclusive offers.</p>
+        <form>
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-social">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <ul class="bottom-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+      <p>&copy; <span id="year"></span> Event Planner. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Script section -->
+  <script>
+    // Set year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Login status handling
+    const username = localStorage.getItem("username");
+    if (username) {
+      document.getElementById("username-display").textContent = username;
+      document.getElementById("user-info").style.display = "inline-block";
+      document.getElementById("login-register").style.display = "none";
+      document.getElementById("logout-btn").style.display = "inline-block";
+    }
+
+    function logout() {
+      localStorage.removeItem("username");
+      location.reload();
+    }
+
+    // Check login before going to a page
+    function goToPage(url) {
+      const user = localStorage.getItem("username");
+      if (user) {
+        window.location.href = url;
+      } else {
+        window.location.href = "login.html";
+      }
+    }
+    const menuIcon = document.getElementById('menu-icon');
+  const navMenu = document.getElementById('nav-menu');
+
+  menuIcon.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+  </script>
+</body>
+</html>
